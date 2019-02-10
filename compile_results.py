@@ -23,10 +23,11 @@ def compile_results(prefix):
         self.N_iscool   += d.N_iscool
         
         # append values
+	ignore = ['fname','Nstars','N_hasGAIA','N_isMdwarf','N_iscool']
         for a in dir(self):
 
             # skip hidden variables
-            if (a[0] != '_') and (a != 'fname'):
+            if (a[0] != '_') and (a not in ignore):
                 setattr(self, a, np.append(getattr(self,a), getattr(d,a)))
                 
     # save the compiled object
